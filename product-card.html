@@ -115,24 +115,23 @@
                         <div class="top-end">
                             <div class="navbar-cart">
                                 <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
+                                    <a href="javascript:void(0)" class="main-btn" id="cart-chip">
                                         <i class="lni lni-cart"></i>
                                     </a>
                                     <!-- Shopping Item -->
                                     <div class="shopping-item">
                                         <div class="dropdown-cart-header">
-                                            <span>0 articles</span>
-                                            <a href="./cart.html">Voir le panier</a>
+                                            <span id="cart-nb">0 articles</span>
                                         </div>
-                                        <ul class="shopping-list">
+                                        <ul class="shopping-list" id="cart-list">
                                         </ul>
                                         <div class="bottom">
                                             <div class="total">
                                                 <span>Total</span>
-                                                <span class="total-amount">0 €</span>
+                                                <span class="total-amount" id="cart-ttc">0 €</span>
                                             </div>
                                             <div class="button">
-                                                <a href="./cart.html" class="btn animate">Vérifier</a>
+                                                <a href="./cart.html" class="btn animate">Voir le panier</a>
                                             </div>
                                         </div>
                                     </div>
@@ -175,39 +174,27 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="main-img">
-                            <img src="" id="current" alt="#">
+                            <img src="" id="item-img" alt="#">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="product-info">
-                            <h2 id="product-name"></h2>
+                            <h2 id="item-name"></h2>
                             <p class="category"><i class="lni lni-tag"></i> Catégorie : Appareil photo vintage</p>
-                            <h3 class="price text-primary" id="product-price"></h3>
-                            <p class="info-text" id="product-info"></p>
+                            <h3 class="price text-primary" id="item-price"></h3>
+                            <p class="info-text" id="item-info"></p>
                             <div class="bottom-content">
                                 <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="col-lg-6 col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="color">Lentille</label>
-                                            <select class="form-control" id="lens">
-                                                <option>35mm 1.4</option>
-                                                <option>50mm 1.6</option>
+                                            <select class="form-control" id="item-lens">
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="form-group quantity">
-                                            <label for="color">Quantity</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="col-lg-6 col-md-4 col-12">
                                         <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Ajouter</button>
+                                            <button class="btn" onclick="addCart()">Ajouter</button>
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +408,7 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/orinoco.js"></script>
     <script>
-        fillProductCard();
+        fillItemCard();
     </script>
 </body>
 </html>

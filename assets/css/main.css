@@ -1884,7 +1884,7 @@ top: -1px;
 }
 
 .header .navbar-cart .cart-items .shopping-item .shopping-list li .cart-img {
-  border: 1px solid #ededed;
+  /*border: 1px solid #ededed;*/
   overflow: hidden;
   height: 80px;
   width: 80px;
@@ -4889,4 +4889,12 @@ top: 2px;
   .footer .footer-bottom .socila li span {
     display: none;
   }
+}
+
+/* mes ajouts */
+/* -------------------------------------------------------------------------------- */
+.cart-img-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

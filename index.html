@@ -115,24 +115,23 @@
                         <div class="top-end">
                             <div class="navbar-cart">
                                 <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
+                                    <a href="javascript:void(0)" class="main-btn" id="item-chip">
                                         <i class="lni lni-cart"></i>
                                     </a>
                                     <!-- Shopping Item -->
                                     <div class="shopping-item">
                                         <div class="dropdown-cart-header">
-                                            <span>0 articles</span>
-                                            <a href="./cart.html">Voir le panier</a>
+                                            <span id="cart-nb">0 articles</span>
                                         </div>
-                                        <ul class="shopping-list">
+                                        <ul class="shopping-list" id="cart-list">
                                         </ul>
                                         <div class="bottom">
                                             <div class="total">
                                                 <span>Total</span>
-                                                <span class="total-amount">0 €</span>
+                                                <span class="total-amount" id="cart-ttc">0 €</span>
                                             </div>
                                             <div class="button">
-                                                <a href="./cart.html" class="btn animate">Vérifier</a>
+                                                <a href="./cart.html" class="btn animate">Voir le panier</a>
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +147,7 @@
     </header>
     <!-- End Header Area -->
 
-    <!-- Start Trending Product Area -->
+    <!-- Start Trending Item Area -->
     <section class="trending-product section">
         <div class="container">
             <div class="row">
@@ -158,13 +157,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Start Products List -->
-            <div class="row" id="product-list">
+            <!-- Start Item List -->
+            <div class="row" id="item-list">
             </div>
-            <!-- End Products List -->
+            <!-- End Item List -->
         </div>
     </section>
-    <!-- End Trending Product Area -->
+    <!-- End Trending Item Area -->
 
     <!-- Start Shipping Info -->
     <section class="shipping-info bg-white">
@@ -368,6 +367,7 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/orinoco.js"></script>
     <script>
+        readStorage();
         fillCamList();
     </script>
 </body>
