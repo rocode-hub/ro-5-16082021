@@ -35,6 +35,7 @@ const str_tagcartchip  = 'cart-chip';
 const str_tagcartnb    = 'cart-nb';
 const str_tagcartlist  = 'cart-list';
 const str_tagcartttc   = 'cart-ttc';
+const str_tagorderttc  = 'order-ttc';
 const str_idstorage    = 'orinoco_cart';
 
 let obj_cart = new clsCart(0, []);
@@ -151,7 +152,7 @@ async function fillCartMini() {
         obj_cart.tbl_items.forEach((elmt_item, elmt_index) => {
             html_cartlist += `
                 <li>
-                    <a onclick="removeCart(${elmt_index})" class="remove" title="Remove this item">
+                    <a onclick="removeCart(${elmt_index})" class="remove" title="Supprimer cet article">
                         <i class="lni lni-close"></i>
                     </a>
                     <div class="cart-img-head">
@@ -171,9 +172,9 @@ async function fillCartMini() {
     
     }
     /* nombre d'articles - texte */
-    document.getElementById(str_tagcartnb).innerText = `${int_cartnb} articles`;
+    document.getElementById(str_tagcartnb).textContent = `${int_cartnb} articles`;
     /* nombre d'articles - ttc */
-    document.getElementById(str_tagcartttc).innerText = euroPrice.format(obj_cart.mon_ttc/100);
+    document.getElementById(str_tagcartttc).textContent = euroPrice.format(obj_cart.mon_ttc/100);
 }  
 
 /*panier - ajout article */
@@ -195,4 +196,15 @@ async function removeCart(param_index) {
     obj_cart.tbl_items.splice(param_index, 1);
     updStorage();
     fillCartMini();
+}
+
+/* confirmation de commande */
+/* -------------------------------------------------------------------------------- */
+async function validationOrder() {
+    obj_cart = JSON.parse(localStorage.getItem(str_idstorage));
+    document.getElementById(str_tagorderttc).textContent = euroPrice.format(obj_cart.mon_ttc/100);
+    localStorage.clear();
+    obj_cart.mon_ttc = 0;
+    obj_cart.tbl_items = [];
+    updStorage();
 }

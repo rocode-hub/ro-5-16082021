@@ -4898,3 +4898,19 @@ top: 2px;
     align-items: center;
     justify-content: center;
 }
+
+.font-bold {
+    font-weight: bold;
+}
+
+.align-right {
+    float: right;
+}
+
+.line-bottom {
+    border-bottom: 2px solid #bebebe;
+}
+
+.sum-title {
+    margin-top: 30px;
+}

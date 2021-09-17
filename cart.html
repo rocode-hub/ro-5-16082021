@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Orinoco : fiche produit</title>
+    <title>Orinoco : panier</title>
     <meta name="description" content="orinoco ecommerce appareil-photo camera vintage" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.svg" />
@@ -26,14 +26,14 @@
     <![endif]-->
 
     <!-- Preloader -->
-    <div class="preloader">
+<!--    <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- /End Preloader -->
     
     <!-- Start Header Area -->
@@ -153,13 +153,13 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="breadcrumbs-content">
-                        <h1 class="page-title">Fiche Produit</h1>
+                        <h1 class="page-title">Mon Panier</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
                         <li><a href="index.html"><i class="lni lni-home"></i> Accueil</a></li>
-                        <li>Fiche Produit</li>
+                        <li>Mon Panier</li>
                     </ul>
                 </div>
             </div>
@@ -167,44 +167,56 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <!-- Start Item Details -->
-    <section class="item-details section">
-        <div class="container">
-            <div class="top-area">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="main-img">
-                            <img src="" id="item-img" alt="#">
+    <!-- Start Cart Content -->
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-lg-8 col-12">
+                <ul id="items-list">
+                    <li class="card single-product">
+                        <div class="row">
+                        <div class="col-lg-4">
+<!--                        <div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 mobile">
+                            <div class="d-flex flex-row align-items-center">-->
+                            <img src="http://localhost:3000/images/vcam_1.jpg" width="150" height="100" alt="" id="image">
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-info">
-                            <h2 id="item-name"></h2>
-                            <p class="category"><i class="lni lni-tag"></i> Catégorie : Appareil photo vintage</p>
-                            <h3 class="price text-primary" id="item-price"></h3>
-                            <p class="info-text" id="item-info"></p>
-                            <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-6 col-md-4 col-12">
-                                        <div class="form-group">
-                                            <label for="color">Lentille</label>
-                                            <select class="form-control" id="item-lens">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" onclick="addCart()">Ajouter</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-4">
+
+                                <!--div class="d-flex flex-column pl-md-3 pl-1"-->
+                            <h6>COTTON T-SHIRT</h6>
+                            <p>Art.No:<span class="pl-2">091091001</span></p>
                         </div>
+                        <div class="col-lg-4">
+                            <div class="pl-md-0 pl-1"><b>$19.98</b></div>
+                            <div class="h2">&times;</div>
+                        </div></div>
+                    </li>
+                </ul>
+
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row"><img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
+                        <div class="ml-2"><span class="font-weight-bold d-block">Iphone 11 pro</span><span class="spec">256GB, Navy Blue</span></div>
                     </div>
+                    <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
                 </div>
+
+            </div>
+            <div class="col-lg-4">
+                <h2 class="h5 sum-title text-center">Récapitulatif</h2>
+                <div class="row">
+                    <p id="sum-nb" class="py-2 line-bottom">0 articles</span>
+                    <div class="col-lg-12 py-2 line-bottom">
+                        <p>Sous-Total<span class="text-primary align-right font-bold" id="sum-sstotal">0 €</span></p>
+                        <p>Livraison<span class="text-primary align-right font-bold">GRATUIT</span></p>
+                    </div>
+                    <p id="sum-ttc" class="py-2 h5">Total<span class="text-dark align-right font-bold" id="sum-sstotal">0 €</span></p>
+                    <div class="button text-center">
+                        <a onclick="" class="btn animate">Je confirme ma commande</a>
+                    </div>
+            </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- End Cart Content -->
 
     <!-- Start Shipping Info -->
     <section class="shipping-info bg-white">
@@ -409,7 +421,6 @@
     <script src="./assets/js/orinoco.js"></script>
     <script>
         readStorage();
-        fillItemCard();
     </script>
 </body>
 </html>
