@@ -26,14 +26,14 @@
     <![endif]-->
 
     <!-- Preloader -->
-<!--    <div class="preloader">
+    <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- /End Preloader -->
     
     <!-- Start Header Area -->
@@ -170,49 +170,58 @@
     <!-- Start Cart Content -->
     <div class="container">
         <div class="row mt-4">
-            <div class="col-lg-8 col-12">
-                <ul id="items-list">
-                    <li class="card single-product">
-                        <div class="row">
-                        <div class="col-lg-4">
-<!--                        <div class="d-flex flex-row justify-content-between align-items-center pt-lg-4 pt-2 pb-3 mobile">
-                            <div class="d-flex flex-row align-items-center">-->
-                            <img src="http://localhost:3000/images/vcam_1.jpg" width="150" height="100" alt="" id="image">
-                        </div>
-                        <div class="col-lg-4">
-
-                                <!--div class="d-flex flex-column pl-md-3 pl-1"-->
-                            <h6>COTTON T-SHIRT</h6>
-                            <p>Art.No:<span class="pl-2">091091001</span></p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pl-md-0 pl-1"><b>$19.98</b></div>
-                            <div class="h2">&times;</div>
-                        </div></div>
-                    </li>
-                </ul>
-
-                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                    <div class="d-flex flex-row"><img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
-                        <div class="ml-2"><span class="font-weight-bold d-block">Iphone 11 pro</span><span class="spec">256GB, Navy Blue</span></div>
-                    </div>
-                    <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+            <div class="col-lg-8 col-12 pe-lg-4">
+                <h2 class="h5 sum-title">Articles</h2>
+                <div class="row" id="order-list">
                 </div>
-
+                <h2 class="h5 sum-title">Informations de commande</h2>
+                <form id="order-account" onsubmit="validateOrder()">
+                    <div class="form-group mt-3">
+                        <label for="inputsurname">Nom</label>
+                        <input type="text" class="form-control" id="inputsurname" aria-describedby="nom de famille" required>
+                    </div>
+                    <div class="form-group mt-1">
+                        <label for="inputname">Prénom</label>
+                        <input type="text" class="form-control" id="inputname" aria-describedby="prénom" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputmail">Adresse mail</label>
+                        <input type="email" class="form-control" id="inputmail" aria-describedby="adresse mail" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputadrline">Ligne adresse ( numéro, voie, rue... )</label>
+                        <input type="text" class="form-control" id="inputadrline" aria-describedby="adresse ligne" required>
+                    </div>
+                    <div class="form-group mt-1">
+                        <label for="inputadrcp">Code postal</label>
+                        <input type="text" class="form-control" id="inputadrcp" aria-describedby="adresse code postal" required>
+                    </div>
+                    <div class="form-group mt-1">
+                        <label for="inputadrloc">Localité</label>
+                        <input type="text" class="form-control" id="inputadrloc" aria-describedby="adresse localité" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">même adresse pour la livraison</label>
+                        </div>
+                    </div>
+                    <button id="form-btn" type="submit" class="d-none"></button>
+                </form>
             </div>
             <div class="col-lg-4">
-                <h2 class="h5 sum-title text-center">Récapitulatif</h2>
+                <h2 class="h5 sum-title">Récapitulatif</h2>
                 <div class="row">
-                    <p id="sum-nb" class="py-2 line-bottom">0 articles</span>
-                    <div class="col-lg-12 py-2 line-bottom">
-                        <p>Sous-Total<span class="text-primary align-right font-bold" id="sum-sstotal">0 €</span></p>
+                    <p id="sum-nb" class="py-2 line-bottom"></span>
+                            <div class="col-lg-12 py-2 line-bottom">
+                        <p>Sous-Total<span class="text-primary align-right font-bold" id="sum-stotal"></span></p>
                         <p>Livraison<span class="text-primary align-right font-bold">GRATUIT</span></p>
                     </div>
-                    <p id="sum-ttc" class="py-2 h5">Total<span class="text-dark align-right font-bold" id="sum-sstotal">0 €</span></p>
-                    <div class="button text-center">
-                        <a onclick="" class="btn animate">Je confirme ma commande</a>
+                    <p class="py-2 h5">Total<span  id="sum-ttc" class="text-dark align-right font-bold"></span></p>
+                    <div class="button cart-button text-center">
+                        <button id="order-btn" type="submit" class="btn" onclick="submitOrder()">Commander</button>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
     </div>
@@ -421,6 +430,7 @@
     <script src="./assets/js/orinoco.js"></script>
     <script>
         readStorage();
+        fillCart();
     </script>
 </body>
 </html>

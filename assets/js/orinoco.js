@@ -35,7 +35,13 @@ const str_tagcartchip  = 'cart-chip';
 const str_tagcartnb    = 'cart-nb';
 const str_tagcartlist  = 'cart-list';
 const str_tagcartttc   = 'cart-ttc';
+const str_tagorderlist = 'order-list';
 const str_tagorderttc  = 'order-ttc';
+const str_tagorderform = 'order-account';
+const str_tagorderbtn  = 'order-btn';
+const str_tagsumnb     = 'sum-nb';
+const str_tagsumstotal = 'sum-stotal';
+const str_tagsumttc    = 'sum-ttc';
 const str_idstorage    = 'orinoco_cart';
 
 let obj_cart = new clsCart(0, []);
@@ -152,7 +158,7 @@ async function fillCartMini() {
         obj_cart.tbl_items.forEach((elmt_item, elmt_index) => {
             html_cartlist += `
                 <li>
-                    <a onclick="removeCart(${elmt_index})" class="remove" title="Supprimer cet article">
+                    <a onclick="removeCart(${elmt_index});" class="remove" title="Supprimer cet article">
                         <i class="lni lni-close"></i>
                     </a>
                     <div class="cart-img-head">
@@ -196,6 +202,59 @@ async function removeCart(param_index) {
     obj_cart.tbl_items.splice(param_index, 1);
     updStorage();
     fillCartMini();
+}
+
+/* panier */
+/* -------------------------------------------------------------------------------- */
+async function fillCart() {
+    const int_cartnb = Object.keys(obj_cart.tbl_items).length;
+    const order_form = document.getElementById(str_tagorderform);
+    const order_btn  = document.getElementById(str_tagorderbtn);
+    let html_orderlist = '';
+    order_form.setAttribute('hidden', '');
+    order_btn.setAttribute('hidden', '');
+
+    document.getElementById(str_tagorderlist).innerHTML = html_orderlist;
+
+    if (int_cartnb > 0 ) {
+        /* affichage article */
+        obj_cart.tbl_items.forEach((elmt_item, elmt_index) => {
+            html_orderlist += `
+                <div class="col-lg-6 col-12">
+                    <div class="card single-product">
+                        <img src="${elmt_item.str_img}" alt="#">
+                        <h6 class="mt-3">${elmt_item.str_name}</h6>
+                        <p>${elmt_item.str_lens}<span class="text-primary align-right font-bold">${euroPrice.format(elmt_item.mon_price/100)}</span></p>
+                        <div class="button cart-button text-center mt-2">
+                            <button class="btn" onclick="removeCart(${elmt_index});fillCart();">Supprimer</button>
+                        </div>
+                    </div>
+                </div>`
+            ;
+        });
+        document.getElementById(str_tagorderlist).innerHTML = html_orderlist;
+        order_form.removeAttribute('hidden');
+        order_btn.removeAttribute('hidden');
+    }
+    /* nombre d'articles */
+    document.getElementById(str_tagsumnb).textContent = `${int_cartnb} articles`;
+    /* sous-total */
+    document.getElementById(str_tagsumstotal).textContent = euroPrice.format(obj_cart.mon_ttc/100);
+    /* ttc */
+    document.getElementById(str_tagsumttc).textContent = euroPrice.format(obj_cart.mon_ttc/100);
+}
+
+/* formulaire - contrôle */
+/* -------------------------------------------------------------------------------- */
+async function submitOrder() {
+    document.getElementById('form-btn').click();
+}
+
+/* formulaire - confirmation */
+/* -------------------------------------------------------------------------------- */
+async function validateOrder() {
+    alert("test");
+    window.location.href='./validation.html';
 }
 
 /* confirmation de commande */
