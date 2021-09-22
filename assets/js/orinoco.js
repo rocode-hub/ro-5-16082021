@@ -62,8 +62,12 @@ const euroPrice = new Intl.NumberFormat('fr-FR', {
 /* appel API */
 /* -------------------------------------------------------------------------------- */
 const getAPI = async function (param_URLget) {
-    const response = await fetch(param_URLget);
-    return await response.json();
+    try {
+        const response = await fetch(param_URLget);
+        return await response.json();
+    } catch {
+        alert('Le serveur n\'est pas joignable !');
+    }
 };
 
 /* récupération paramètre id dans URL */
@@ -76,30 +80,32 @@ const getProductId = async function(param_id) {
 /* -------------------------------------------------------------------------------- */
 async function fillCamList() {
     const tbl_cam = await getAPI(str_urlget);
-    let html_itemlist = "";
+    let html_itemlist = '';
 
-    tbl_cam.forEach((elmt_camera) => {
-        html_itemlist += `
-            <div class="col-12 col-lg-4 col-md-6">
-                <div class="card single-product">
-                    <div class="product-image">
-                        <img src="${elmt_camera.imageUrl}" alt="#">
-                        <div class="button">
-                            <a href="#" class="btn"><i class="lni lni-cart"></i> Acheter</a>
+    if (!(typeof tbl_cam === 'undefined')) {
+        tbl_cam.forEach((elmt_camera) => {
+            html_itemlist += `
+                <div class="col-12 col-lg-4 col-md-6">
+                    <div class="card single-product">
+                        <div class="product-image">
+                            <img src="${elmt_camera.imageUrl}" alt="#">
+                            <div class="button">
+                                <a href="#" class="btn"><i class="lni lni-cart"></i> Acheter</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="title">
+                                <a href="item-card.html?_id=${elmt_camera._id}" class="stretched-link">${elmt_camera.name}</a>
+                            </h4>
+                            <div class="price">
+                                <span>${euroPrice.format(elmt_camera.price/100)}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-info">
-                        <h4 class="title">
-                            <a href="item-card.html?_id=${elmt_camera._id}" class="stretched-link">${elmt_camera.name}</a>
-                        </h4>
-                        <div class="price">
-                            <span>${euroPrice.format(elmt_camera.price/100)}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        ;
-    });
+                </div>`
+            ;
+        });
+    }
     document.getElementById(str_tagitemlist).innerHTML = html_itemlist;
 }
 
@@ -109,18 +115,19 @@ async function fillItemCard() {
     const item = await getAPI(str_urlget + '/' + (await getProductId('_id')));
     let html_lens = '';
 
-    obj_item = new clsItem(item._id, item.name, item.imageUrl, item.price, 0, '');
-
-    document.title = 'Orinoco : ' + item.name;
-    document.getElementById(str_tagitemimg).setAttribute('src', item.imageUrl);
-    document.getElementById(str_tagitemname).textContent = item.name;
-    document.getElementById(str_tagitemprice).textContent = euroPrice.format(item.price/100);
-    document.getElementById(str_tagiteminfo).textContent = item.description;
-    item.lenses.forEach((elmt_item) => {
-        html_lens += `
-            <option>${elmt_item}</option>
-            `;
-    });
+    if (!(typeof item === 'undefined')) {
+        obj_item = new clsItem(item._id, item.name, item.imageUrl, item.price, 0, '');
+        document.title = 'Orinoco : ' + item.name;
+        document.getElementById(str_tagitemimg).setAttribute('src', item.imageUrl);
+        document.getElementById(str_tagitemname).textContent = item.name;
+        document.getElementById(str_tagitemprice).textContent = euroPrice.format(item.price/100);
+        document.getElementById(str_tagiteminfo).textContent = item.description;
+        item.lenses.forEach((elmt_item) => {
+            html_lens += `
+                <option>${elmt_item}</option>
+                `;
+        });
+    }
     document.getElementById(str_tagitemlens).innerHTML = html_lens;
 }
 
@@ -162,12 +169,12 @@ async function fillCartMini() {
                         <i class="lni lni-close"></i>
                     </a>
                     <div class="cart-img-head">
-                        <a class="cart-img-thumb cart-img" href="product-details.html">
+                        <a class="cart-img-thumb cart-img" href="item-card.html?_id=${elmt_item.str_id}">
                             <img src="${elmt_item.str_img}" alt="#">
                         </a>
                     </div>
                     <div class="content">
-                        <h4><a href="product-details.html">${elmt_item.str_name}</a></h4>
+                        <h4><a href="item-card.html?_id=${elmt_item.str_id}">${elmt_item.str_name}</a></h4>
                         <p>${elmt_item.str_lens}</p>
                         <p class="text-primary">${euroPrice.format(elmt_item.mon_price/100)}</p>
                     </div>
@@ -183,7 +190,7 @@ async function fillCartMini() {
     document.getElementById(str_tagcartttc).textContent = euroPrice.format(obj_cart.mon_ttc/100);
 }  
 
-/*panier - ajout article */
+/* panier - ajout article */
 /* -------------------------------------------------------------------------------- */
 async function addCart() {
     let inputlens = document.getElementById(str_tagitemlens);
@@ -248,13 +255,13 @@ async function fillCart() {
 /* -------------------------------------------------------------------------------- */
 async function submitOrder() {
     document.getElementById('form-btn').click();
+    /*window.location.replace("./validation.html");*/
 }
 
 /* formulaire - confirmation */
 /* -------------------------------------------------------------------------------- */
 async function validateOrder() {
-    alert("test");
-    window.location.href='./validation.html';
+    window.open('./validation.html');
 }
 
 /* confirmation de commande */
