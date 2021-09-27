@@ -255,7 +255,7 @@ async function fillCart() {
 /* -------------------------------------------------------------------------------- */
 async function submitOrder() {
     document.getElementById('form-btn').click();
-    /*window.location.replace("./validation.html");*/
+    document.getElementById('form-btn').clear();
 }
 
 /* formulaire - confirmation */

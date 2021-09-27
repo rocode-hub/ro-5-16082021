@@ -10,9 +10,9 @@
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.svg" />
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
 
 </head>
 
@@ -175,30 +175,30 @@
                 <div class="row" id="order-list">
                 </div>
                 <h2 class="h5 sum-title">Informations de commande</h2>
-                <form id="order-account" onsubmit="validateOrder()">
+                <form id="order-account" method="POST" onsubmit="validateOrder()">
                     <div class="form-group mt-3">
                         <label for="inputsurname">Nom</label>
-                        <input type="text" class="form-control" id="inputsurname" aria-describedby="nom de famille" required>
+                        <input type="text" class="form-control" pattern="[A-Z -]{2,35}" id="inputsurname" minlength="2" maxlength="35" title="lettres majuscules, espace, tiret ( de 2 à 35 caractères)" required />
                     </div>
                     <div class="form-group mt-1">
                         <label for="inputname">Prénom</label>
-                        <input type="text" class="form-control" id="inputname" aria-describedby="prénom" required>
+                        <input type="text" class="form-control" pattern="[a-zA-Zé -]{2,35}" id="inputname" minlength="2" maxlength="35" title="lettres, é, espace, tiret ( de 2 à 35 caractères)" required />
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputmail">Adresse mail</label>
-                        <input type="email" class="form-control" id="inputmail" aria-describedby="adresse mail" required>
+                        <input type="email" class="form-control" id="inputmail" title="format xxx@xxx.xxx" required />
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputadrline">Ligne adresse ( numéro, voie, rue... )</label>
-                        <input type="text" class="form-control" id="inputadrline" aria-describedby="adresse ligne" required>
+                        <input type="text" class="form-control" pattern="[a-zA-Z0-9 ]{2,60}" id="inputadrline" minlength="2" maxlength="60" title="lettres, chiffres ( de 2 à 60 caractères)" required />
                     </div>
                     <div class="form-group mt-1">
                         <label for="inputadrcp">Code postal</label>
-                        <input type="text" class="form-control" id="inputadrcp" aria-describedby="adresse code postal" required>
+                        <input type="text" class="form-control" pattern="[0-9]{5,5}" id="inputadrcp" minlength="5" maxlength="5" title="chiffres ( 5 caractères)" required />
                     </div>
                     <div class="form-group mt-1">
                         <label for="inputadrloc">Localité</label>
-                        <input type="text" class="form-control" id="inputadrloc" aria-describedby="adresse localité" required>
+                        <input type="text" class="form-control" pattern="[A-Z -]{2,45}" id="inputadrloc" minlength="2" maxlength="45" title="lettres majuscules, espace, tiret ( de 2 à 45 caractères)" required />
                     </div>
                     <div class="form-group mt-4">
                         <div class="form-check">
@@ -212,14 +212,14 @@
             <div class="col-lg-4">
                 <h2 class="h5 sum-title">Récapitulatif</h2>
                 <div class="row">
-                    <p id="sum-nb" class="py-2 line-bottom"></span>
-                            <div class="col-lg-12 py-2 line-bottom">
+                    <p id="sum-nb" class="py-2 line-bottom"></p>
+                    <div class="col-lg-12 py-2 line-bottom">
                         <p>Sous-Total<span class="text-primary align-right font-bold" id="sum-stotal"></span></p>
                         <p>Livraison<span class="text-primary align-right font-bold">GRATUIT</span></p>
                     </div>
                     <p class="py-2 h5">Total<span  id="sum-ttc" class="text-dark align-right font-bold"></span></p>
                     <div class="button cart-button text-center">
-                        <button id="order-btn" class="btn"  type="submit" onclick="submitOrder()">Commander</button>
+                    <button id="order-btn" class="btn"  type="submit" onclick="submitOrder()">Commander</button>
                     </div>
                 </div>
             </div>
